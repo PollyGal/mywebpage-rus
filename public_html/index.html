@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галинская Полина — PR-эксперт</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:       #FAF8F5;
+            --bg-card:  #FFFFFF;
+            --bg-lift:  #F3EFE9;
+            --fg:       #1C1A18;
+            --muted:    #7A7268;
+            --accent:   #B87B5E;
+            --border:   #E8E2DA;
+            --r:        12px;
+            --r-sm:     8px;
+            --container: 1100px;
+            --py:       96px;
+            --shadow:   0 2px 12px rgba(0,0,0,0.07);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(250,248,245,0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo img { height: 48px; width: auto; object-fit: contain; mix-blend-mode: multiply; opacity: 0.12; }
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+            font-size: 14px; font-weight: 500;
+            color: var(--muted); transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+        .burger span { display: block; width: 22px; height: 2px; background: var(--fg); border-radius: 2px; transition: all 0.25s; }
+        .burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mob-nav {
+            display: none; position: fixed; top: 64px; left: 0; right: 0;
+            background: var(--bg-card); border-bottom: 1px solid var(--border);
+            padding: 28px 24px; flex-direction: column; gap: 20px; z-index: 99;
+            box-shadow: var(--shadow-lg);
+        }
+        .mob-nav.open { display: flex; }
+        .mob-nav a { font-size: 16px; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+        .mob-nav a:hover { color: var(--accent); }
+
+        /* HERO */
+        .hero { padding: 80px 0 96px; border-bottom: 1px solid var(--border); }
+        .hero-inner { display: flex; align-items: flex-start; gap: 64px; }
+        .hero-content { flex: 1; min-width: 0; }
+        .hero-photo {
+            flex-shrink: 0; width: 200px; height: 200px;
+            object-fit: cover; object-position: center top;
+            border-radius: var(--r);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .label {
+            font-size: 12px; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: clamp(42px, 6.5vw, 80px);
+            font-weight: 700; letter-spacing: -0.03em;
+            line-height: 1.05; margin-bottom: 24px; color: var(--fg);
+        }
+        .hero-title em { font-style: normal; color: var(--accent); }
+        .hero-text { font-size: 16px; color: var(--muted); max-width: 500px; line-height: 1.75; margin-bottom: 48px; }
+
+        .hero-stats { display: flex; gap: 48px; margin-bottom: 48px; flex-wrap: wrap; }
+        .stat-num { font-size: 36px; font-weight: 700; line-height: 1; color: var(--fg); }
+        .stat-lbl { font-size: 12px; color: var(--muted); margin-top: 6px; max-width: 150px; line-height: 1.4; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--accent); color: #FFFFFF;
+            font-size: 14px; font-weight: 600;
+            padding: 14px 28px; border: none; border-radius: var(--r-sm);
+            transition: opacity 0.2s, box-shadow 0.2s; cursor: pointer;
+            box-shadow: 0 4px 14px rgba(184,123,94,0.35);
+        }
+        .btn:hover { opacity: 0.9; box-shadow: 0 6px 20px rgba(184,123,94,0.45); }
+        .btn-outline {
+            background: transparent; color: var(--fg);
+            border: 1.5px solid var(--border); box-shadow: none;
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; opacity: 1; }
+
+        .hero-quote {
+            margin-top: 56px; padding: 24px 28px;
+            background: var(--bg-card); border-radius: var(--r);
+            border-left: 3px solid var(--accent);
+            box-shadow: var(--shadow);
+            font-size: 14px; color: var(--muted);
+            font-style: italic; max-width: 440px; line-height: 1.7;
+        }
+        .hero-quote cite {
+            display: block; font-style: normal;
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            color: var(--accent); margin-top: 12px;
+        }
+
+        /* SECTION */
+        .section { padding: var(--py) 0; border-bottom: 1px solid var(--border); }
+        .sec-head { margin-bottom: 48px; }
+        .sec-title {
+            font-size: clamp(26px, 3.5vw, 40px); font-weight: 700;
+            letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 18px;
+            display: inline-block; position: relative; padding-bottom: 14px;
+            max-width: 100%; word-break: break-word;
+        }
+        .sec-title::after {
+            content: ''; position: absolute;
+            left: 0; bottom: 0;
+            height: 3px; width: 0;
+            background: var(--accent); border-radius: 2px;
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .sec-title.line-visible::after { width: 52px; }
+        @media (prefers-reduced-motion: reduce) {
+            .sec-title::after { width: 52px; transition: none; }
+        }
+        .sec-sub { font-size: 15px; color: var(--muted); max-width: 480px; line-height: 1.65; }
+
+        /* CLIENTS */
+        .clients-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .client-cell {
+            display: flex; align-items: center; justify-content: center;
+            padding: 32px 24px; background: var(--bg-card);
+            border-radius: var(--r); box-shadow: var(--shadow);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .client-cell:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+        .client-cell img {
+            max-height: 36px; max-width: 110px; width: auto;
+            object-fit: contain; filter: grayscale(1); opacity: 0.6;
+            transition: filter 0.2s, opacity 0.2s;
+        }
+        .client-cell:hover img { filter: none; opacity: 1; }
+
+        /* CASES FEATURED */
+        .cases-feat { display: flex; flex-direction: column; gap: 20px; }
+        .case-f {
+            padding: 48px; background: var(--bg-card);
+            border-radius: var(--r); box-shadow: var(--shadow);
+            transition: box-shadow 0.2s;
+        }
+        .case-f:hover { box-shadow: var(--shadow-lg); }
+
+        .case-f-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+        .case-f-name { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; word-break: break-word; }
+        .case-tag {
+            flex-shrink: 0; font-size: 11px; font-weight: 500;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            color: var(--accent); background: rgba(184,123,94,0.1);
+            border-radius: 20px; padding: 5px 12px; white-space: nowrap;
+        }
+        .case-f-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 620px; margin-bottom: 28px; }
+
+        .case-stats {
+            display: flex; gap: 32px; flex-wrap: wrap;
+            padding: 20px 24px; background: var(--bg-lift);
+            border-radius: var(--r-sm); margin-bottom: 28px;
+        }
+        .cs-num { font-size: 26px; font-weight: 700; line-height: 1; color: var(--accent); }
+        .cs-lbl { font-size: 11px; color: var(--muted); margin-top: 5px; }
+
+        .case-imgs { display: flex; gap: 10px; margin-bottom: 28px; overflow-x: auto; scrollbar-width: none; }
+        .case-imgs::-webkit-scrollbar { display: none; }
+        .case-imgs img { height: 160px; width: auto; flex-shrink: 0; object-fit: cover; border-radius: var(--r-sm); }
+
+        .case-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+        .cc-title {
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 14px;
+        }
+        .case-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .case-col li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.55; }
+        .case-col li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-size: 18px; line-height: 1.1; }
+
+        /* CASES COMPACT */
+        .cases-comp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+        .case-c {
+            padding: 28px; background: var(--bg-card);
+            border-radius: var(--r); box-shadow: var(--shadow);
+            transition: box-shadow 0.2s, transform 0.2s;
+            display: flex; flex-direction: column;
+        }
+        .case-c:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+        .case-c-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+        .case-c-name { font-size: 15px; font-weight: 600; }
+        .case-c-ind { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+        .case-c-kpi { font-size: 13px; color: var(--muted); line-height: 1.5; }
+        .case-c-val { font-size: 22px; font-weight: 700; color: var(--fg); margin-top: auto; padding-top: 16px; }
+
+        /* FORM */
+        .form-wrap { background: var(--bg-card); border-top: 1px solid var(--border); }
+        .form-sec { padding: var(--py) 0; }
+        .form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+        .form-left p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-top: 20px; }
+
+        .form { display: flex; flex-direction: column; gap: 16px; }
+        .form-field { display: flex; flex-direction: column; gap: 6px; }
+        .form-lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+        .form-input, .form-select {
+            width: 100%; background: var(--bg);
+            border: 1.5px solid var(--border); border-radius: var(--r-sm);
+            padding: 12px 16px; font-size: 14px; color: var(--fg); font-family: inherit;
+            outline: none; transition: border-color 0.2s; appearance: none;
+        }
+        .form-input::placeholder { color: var(--border); }
+        .form-input:focus, .form-select:focus { border-color: var(--accent); }
+        .form-select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B87B5E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+        }
+        .form-ok { display: none; flex-direction: column; gap: 10px; padding: 32px; background: rgba(184,123,94,0.08); border-radius: var(--r); border: 1.5px solid var(--accent); }
+        .form-ok.show { display: flex; }
+        .form-ok-t { font-size: 18px; font-weight: 700; color: var(--accent); }
+        .form-ok-s { font-size: 13px; color: var(--muted); }
+
+        /* CONTACTS */
+        .contacts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .contact-item { padding: 36px; background: var(--bg-card); border-radius: var(--r); box-shadow: var(--shadow); }
+        .contact-type { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+        .contact-val { font-size: 18px; font-weight: 600; }
+        .contact-val a { transition: color 0.2s; }
+        .contact-val a:hover { color: var(--accent); }
+
+        /* FOOTER */
+        .footer-wrap { border-top: 1px solid var(--border); }
+        .footer { padding: 36px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+        .footer-logo img { height: 48px; width: auto; object-fit: contain; mix-blend-mode: multiply; opacity: 0.12; }
+        .footer-copy { font-size: 12px; color: var(--muted); }
+
+        /* LIGHTBOX */
+        .lb-overlay {
+            display: none; position: fixed; inset: 0; z-index: 1000;
+            background: rgba(28, 26, 24, 0.92);
+            backdrop-filter: blur(6px);
+            align-items: center; justify-content: center;
+            padding: 24px;
+            cursor: zoom-out;
+        }
+        .lb-overlay.open { display: flex; }
+        .lb-overlay img {
+            max-width: 92vw; max-height: 88vh;
+            object-fit: contain;
+            border-radius: var(--r);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+            cursor: default;
+            animation: lb-in 0.22s ease;
+        }
+        @keyframes lb-in {
+            from { opacity: 0; transform: scale(0.94); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .lb-close {
+            position: fixed; top: 20px; right: 24px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: none; cursor: pointer; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; line-height: 1;
+            transition: background 0.15s;
+        }
+        .lb-close:hover { background: rgba(255,255,255,0.22); }
+        .case-imgs img { cursor: zoom-in; }
+
+        /* ARTICLE LINK CARDS — fix text overflow on mobile */
+        a[rel="noopener noreferrer"] > div > div:last-child {
+            min-width: 0;
+            flex: 1;
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            :root { --py: 64px; }
+            .nav-links { display: none; }
+            .burger { display: flex; }
+            .hero { padding: 56px 0 72px; }
+            .hero-stats { gap: 32px; }
+            .clients-grid { grid-template-columns: repeat(2, 1fr); }
+            .case-f { padding: 32px; }
+            .case-f-top { flex-direction: column; gap: 10px; }
+            .case-cols { grid-template-columns: 1fr; gap: 20px; }
+            .cases-comp { grid-template-columns: 1fr 1fr; }
+            .form-layout { grid-template-columns: 1fr; gap: 40px; }
+            .contacts-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-inner { flex-direction: column; gap: 28px; align-items: flex-start; }
+            .hero-photo { width: 90px; height: 90px; }
+        }
+
+        @media (max-width: 560px) {
+            .container { padding: 0 16px; }
+            :root { --py: 48px; }
+            .hero { padding: 40px 0 56px; }
+            .hero-inner { gap: 20px; }
+            .hero-photo { width: 72px; height: 72px; }
+            .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .stat-num { font-size: 28px; }
+            .stat-lbl { max-width: none; }
+            .client-cell { padding: 24px 16px; }
+            .case-f { padding: 20px; }
+            .case-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
+            .cs-num { font-size: 20px; }
+            .case-imgs img { height: 110px; }
+            .case-c { padding: 20px; }
+            .cases-comp { grid-template-columns: 1fr; }
+            .footer { flex-direction: column; align-items: flex-start; }
+            a[rel="noopener noreferrer"] > div { padding: 14px 16px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="images/logo.jpeg" alt="Галинская">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#intro">О себе</a></li>
+                <li><a href="#clients">Клиенты</a></li>
+                <li><a href="#cases">Кейсы</a></li>
+                <li><a href="#brief">Бриф</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<nav class="mob-nav" id="mobNav" aria-hidden="true">
+    <a href="#intro" class="mob-link">О себе</a>
+    <a href="#clients" class="mob-link">Клиенты</a>
+    <a href="#cases" class="mob-link">Кейсы</a>
+    <a href="#brief" class="mob-link">Бриф</a>
+    <a href="#contacts" class="mob-link">Контакты</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="intro">
+    <div class="container">
+        <div class="hero-inner">
+        <img src="images/polina.jpeg" alt="Полина Галинская" class="hero-photo">
+        <div class="hero-content">
+        <p class="label">PR-эксперт · Москва</p>
+        <h1 class="hero-title">Полина <em>Галинская</em></h1>
+        <p class="hero-text">
+            15 лет в PR — и я всё ещё влюблена в то, что делаю.<br>
+            Специализация: маркетинг и коммуникации для tech-бизнесов (EdTech, AI, KidTech). Умею выстраивать узнаваемость бренда там, где рынок перегрет и все говорят одно и то же.<br>
+            В портфеле — Fortune 500, стартапы, культурные и спортивные проекты. Открыта к проектной работе и коллаборациям.
+        </p>
+        <div class="hero-stats">
+            <div>
+                <div class="stat-num" data-count="15" data-suffix="+">0</div>
+                <div class="stat-lbl">лет в PR</div>
+            </div>
+            <div>
+                <div class="stat-num" data-count="200" data-suffix="+">0</div>
+                <div class="stat-lbl">публикаций в месяц (лучший результат)</div>
+            </div>
+            <div>
+                <div class="stat-num" data-count="200" data-suffix=" млн">0</div>
+                <div class="stat-lbl">PR Value за год (лучший результат)</div>
+            </div>
+        </div>
+        <a href="#brief" class="btn">
+            Обсудить проект
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+        </a>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="section" id="clients">
+    <div class="container">
+        <div class="sec-head">
+            <p class="label">Клиенты</p>
+            <h2 class="sec-title">Бренды, с которыми работала</h2>
+            <p class="sec-sub" style="white-space: nowrap;">От мировых спортивных марок до государственных корпораций и культурных институций</p>
+        </div>
+        <div class="clients-grid">
+            <div class="client-cell fade-up"><img src="images/nike.png" alt="Nike"></div>
+            <div class="client-cell fade-up"><img src="images/kfc.png" alt="KFC" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/nestle.jpg" alt="Nestlé" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/topgear.jpg" alt="Top Gear" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/tamaris.png" alt="Tamaris"></div>
+            <div class="client-cell fade-up"><img src="images/quiksilver.png" alt="Quiksilver" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/russez.png" alt="Russez" style="max-height:72px; max-width:180px;"></div>
+            <div class="client-cell fade-up"><img src="images/Roxy-logo-3190-1591215288.webp" alt="Roxy" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/beatfilmfestival.png" alt="Beat Film Festival" style="max-height:72px; max-width:180px;"></div>
+            <div class="client-cell fade-up"><img src="images/dc.jpg" alt="DC" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/FL.png" alt="FL.ru" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/yclients.jpg" alt="YCLIENTS" style="max-height:90px; max-width:200px;"></div>
+            <div class="client-cell fade-up"><img src="images/zerocoder.png" alt="Zerocoder" style="max-height:72px; max-width:180px;"></div>
+            <div class="client-cell fade-up"><img src="images/chevostik.png" alt="Chevostik" style="max-height:54px; max-width:150px;"></div>
+            <div class="client-cell fade-up"><img src="images/logiclike.jpg" alt="LogicLike" style="max-height:72px; max-width:180px;"></div>
+            <div class="client-cell fade-up"><img src="images/Oh,my.jpg" alt="Oh, My" style="max-height:90px; max-width:200px;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CASES -->
+<section class="section" id="cases">
+    <div class="container">
+        <div class="sec-head">
+            <p class="label">Кейсы</p>
+            <h2 class="sec-title">Избранные проекты</h2>
+        </div>
+
+        <div class="cases-feat">
+
+            <!-- Zerocoder -->
+            <div class="case-f fade-up">
+                <div class="case-f-top">
+                    <h3 class="case-f-name">Зерокодер</h3>
+                    <span class="case-tag">EdTech · AI & no-code</span>
+                </div>
+                <p class="case-f-desc">PR-поддержка и управление репутацией EdTech-компании на базе ИИ и no-code обучения: формирование медиаприсутствия, продвижение через CEO, организация мероприятий и выстраивание отношений с редакциями России и СНГ.</p>
+                <div class="case-stats">
+                    <div><div class="cs-num" data-count="50" data-suffix="+">0</div><div class="cs-lbl">публикаций в медиа за квартал</div></div>
+                    <div><div class="cs-num" data-count="40" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">рост узнаваемости экспертов</div></div>
+                    <div><div class="cs-num">ТОП-3</div><div class="cs-lbl">по упоминаниям в сегменте онлайн-обучения</div></div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:28px;">
+                    <a href="https://www.forbes.ru/tekhnologii/529699-pocemu-kitajskaa-ii-model-ot-deepseek-eto-nacalo-novoj-gonki-vooruzenij" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#cc0000; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.04em;">F</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Forbes Russia</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">Почему китайская ИИ-модель от DeepSeek — это начало новой «гонки вооружений»</div>
+                                <div style="font-size:12px; color:var(--muted);">forbes.ru →</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://www.setters.media/post/kak-upravlyat-komandoy-v-epohu-ai" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#1a1a1a; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.04em;">SM</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Setters Media</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">Метрикократия: как управлять людьми и проектами, когда стабильности больше нет</div>
+                                <div style="font-size:12px; color:var(--muted);">setters.media →</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="case-cols">
+                    <div class="case-col">
+                        <div class="cc-title">Задачи</div>
+                        <ul>
+                            <li>Выстроить репутацию Зерокодера как экспертного EdTech-бренда</li>
+                            <li>Обеспечить PR-продвижение через CEO компании</li>
+                            <li>Наладить отношения с редакциями российских и СНГ-изданий</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Решения</div>
+                        <ul>
+                            <li>Питчинг и написание экспертных материалов для деловых и отраслевых СМИ</li>
+                            <li>Позиционирование CEO как эксперта в области ИИ и no-code образования</li>
+                            <li>Участие в отраслевых наградах и конкурсах</li>
+                            <li>Информационное спонсорство и привлечение спикеров на мероприятия</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Результаты</div>
+                        <ul>
+                            <li>50+ публикаций в медиа за квартал</li>
+                            <li>Рост узнаваемости экспертов на 40%+</li>
+                            <li>Университет Зерокодер — ТОП-3 по упоминаниям в сегменте онлайн-обучения</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FL.ru -->
+            <div class="case-f fade-up">
+                <div class="case-f-top">
+                    <h3 class="case-f-name">FL.ru</h3>
+                    <span class="case-tag">Маркетплейс · Фриланс</span>
+                </div>
+                <p class="case-f-desc">Продвижение крупнейшего российского фриланс-маркетплейса: закрепление статуса площадки №1, формирование доверия к безопасности платежей и создание сообщества лидеров мнений.</p>
+                <div class="case-stats">
+                    <div><div class="cs-num" data-count="30" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">новых пользователей за 3 месяца</div></div>
+                    <div><div class="cs-num" data-count="40" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">прирост фрилансеров</div></div>
+                    <div><div class="cs-num" data-count="580">0</div><div class="cs-lbl">дизайнеров через квиз с Дуровым</div></div>
+                    <div><div class="cs-num" data-count="15" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">рост клиентской базы</div></div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:28px;">
+                    <a href="https://rb.ru/opinion/good-tz/" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#e63329; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.04em;">RB</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Rusbase</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">Как написать хорошее техническое задание</div>
+                                <div style="font-size:12px; color:var(--muted);">rb.ru →</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://pro.rbc.ru/demo/5c62b8b59a7947e6792ab53d" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#c8102e; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.04em;">RBC</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">RBC Pro</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">Спикер FL.ru на RBC Pro</div>
+                                <div style="font-size:12px; color:var(--muted);">pro.rbc.ru →</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="case-cols">
+                    <div class="case-col">
+                        <div class="cc-title">Задачи</div>
+                        <ul>
+                            <li>Закрепить статус площадки №1 среди фриланс-маркетплейсов</li>
+                            <li>Сформировать доверие к безопасности платежей</li>
+                            <li>Создать сообщество лидеров мнений</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Решения</div>
+                        <ul>
+                            <li>Совместное исследование с Высшей школой экономики</li>
+                            <li>KOL-сторителлинг и Q&A на Яндекс Дзен</li>
+                            <li>Образовательные коллаборации с блогерами</li>
+                            <li>Интерактивный квиз с Павлом Дуровым</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Результаты</div>
+                        <ul>
+                            <li>+30% новых пользователей за 3 месяца (Google Analytics)</li>
+                            <li>580 дизайнеров через квиз-конкурс с Дуровым</li>
+                            <li>Рост органических поисковых запросов на Яндексе</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YCLIENTS -->
+            <div class="case-f fade-up">
+                <div class="case-f-top">
+                    <h3 class="case-f-name">YCLIENTS</h3>
+                    <span class="case-tag">SaaS · BeautyTech</span>
+                </div>
+                <p class="case-f-desc">PR-стратегия для лидера рынка онлайн-записи: формирование экспертного имиджа, продвижение продуктовых обновлений через деловые медиа и рост органического трафика через редакционные материалы.</p>
+                <div class="case-stats">
+                    <div><div class="cs-num" data-count="15" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">новых читателей блога в месяц</div></div>
+                    <div><div class="cs-num" data-count="10" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">рост органических запросов</div></div>
+                    <div><div class="cs-num" data-count="20">0</div><div class="cs-lbl">публикаций в деловых медиа</div></div>
+                    <div><div class="cs-num" data-count="90" data-suffix="%">0</div><div class="cs-lbl">позитивный тон публикаций</div></div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:28px;">
+                    <a href="https://rb.ru/interview/yclients/" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#e63329; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.04em;">RB</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Rusbase</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">Интервью с основателем YCLIENTS</div>
+                                <div style="font-size:12px; color:var(--muted);">rb.ru →</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://vc.ru/services/225623-servis-dlya-onlain-zapisi-yclients-predlozhil-vracham-vesti-medkarty-i-sostavlyat-plany-lecheniya-na-svoei-platforme" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#1f1f1f; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.04em;">VC</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">VC.ru</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">YCLIENTS предложил врачам вести медкарты и составлять планы лечения</div>
+                                <div style="font-size:12px; color:var(--muted);">vc.ru →</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="case-cols">
+                    <div class="case-col">
+                        <div class="cc-title">Задачи</div>
+                        <ul>
+                            <li>Закрепить позицию №1 на рынке онлайн-записи</li>
+                            <li>Продвинуть новые продуктовые направления (медицина)</li>
+                            <li>Нарастить органический трафик через редакционные материалы</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Решения</div>
+                        <ul>
+                            <li>Экспертные интервью в деловых изданиях</li>
+                            <li>Продуктовые анонсы с редакционной подачей</li>
+                            <li>Работа со спикерами компании как с экспертами рынка</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Результаты</div>
+                        <ul>
+                            <li>+15% новых читателей блога ежемесячно</li>
+                            <li>+10% роста органических поисковых запросов</li>
+                            <li>Публикации в Rusbase и VC.ru</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Russez -->
+            <div class="case-f fade-up">
+                <div class="case-f-top">
+                    <h3 class="case-f-name">Russez — Особые экономические зоны России</h3>
+                    <span class="case-tag">B2B · Государство</span>
+                </div>
+                <p class="case-f-desc">Повышение инвестиционной привлекательности ОЭЗ через деловые медиа. Позиционирование CEO как гаранта прозрачности, открытое освещение кейсов резидентов.</p>
+                <div class="case-stats">
+                    <div><div class="cs-num" data-count="50" data-suffix=" млн ₽">0</div><div class="cs-lbl">PR Value в год</div></div>
+                    <div><div class="cs-num" data-count="70">0</div><div class="cs-lbl">публикаций в месяц</div></div>
+                    <div><div class="cs-num" data-count="80" data-suffix="%">0</div><div class="cs-lbl">позитивный тон</div></div>
+                    <div><div class="cs-num" data-count="800" data-suffix=" млрд ₽">0</div><div class="cs-lbl">инвестиции резидентов</div></div>
+                </div>
+                <a href="https://www.themoscowtimes.com/2013/10/01/economic-zone-for-aviation-takes-off-a28195" target="_blank" rel="noopener noreferrer" style="display:block; margin-bottom:28px; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                    <div style="background:var(--bg-card); padding:20px 24px; display:flex; align-items:flex-start; gap:16px;">
+                        <div style="flex-shrink:0; width:40px; height:40px; background:#c8102e; border-radius:4px; display:flex; align-items:center; justify-content:center;">
+                            <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="14" fill="#c8102e"/><text x="11" y="10" font-size="7" font-family="serif" font-weight="bold" fill="white" text-anchor="middle">TMT</text></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">The Moscow Times</div>
+                            <div style="font-size:15px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:6px;">Economic Zone for Aviation Takes Off</div>
+                            <div style="font-size:12px; color:var(--muted);">1 октября 2013 · Публикация о резидентах ОЭЗ Russez →</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="case-cols">
+                    <div class="case-col">
+                        <div class="cc-title">Задачи</div>
+                        <ul>
+                            <li>Повысить видимость бренда в деловых медиа на 50%</li>
+                            <li>Подчеркнуть инвестиционный климат и отсутствие барьеров</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Решения</div>
+                        <ul>
+                            <li>Истории успеха резидентов ОЭЗ</li>
+                            <li>CEO как публичный гарант для инвесторов</li>
+                            <li>Нарратив о наследии бренда Yokohama</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Результаты</div>
+                        <ul>
+                            <li>Фильм на Россия 24 — PR Value 1 млн ₽</li>
+                            <li>3–5 интервью со спикерами в месяц</li>
+                            <li>Масштабная медиаподдержка проектов резидентов</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beat Film Festival -->
+            <div class="case-f fade-up">
+                <div class="case-f-top">
+                    <h3 class="case-f-name">Beat Film Festival</h3>
+                    <span class="case-tag">Культура · Кино</span>
+                </div>
+                <p class="case-f-desc">PR-поддержка международного фестиваля документального кино: выстраивание медийного присутствия, работа с KOL и продвижение продаж билетов через Telegram.</p>
+                <div class="case-stats">
+                    <div><div class="cs-num" data-count="5" data-prefix="×">0</div><div class="cs-lbl">рост продаж билетов</div></div>
+                    <div><div class="cs-num" data-count="90" data-suffix="%">0</div><div class="cs-lbl">конверсия постов в Telegram</div></div>
+                    <div><div class="cs-num" data-count="200">0</div><div class="cs-lbl">публикаций в медиа</div></div>
+                    <div><div class="cs-num" data-count="8">0</div><div class="cs-lbl">спецпроектов с глянцем</div></div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:28px;">
+                    <a href="https://beinopen.ru/article/anton-schnaider" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#1a1918; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.05em;">BIO</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">BeinOpen</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">Интервью: Антон Шнайдер о Beat Film Festival</div>
+                                <div style="font-size:12px; color:var(--muted);">beinopen.ru →</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://theblueprint.ru/culture/cinema/beat-weekend" target="_blank" rel="noopener noreferrer" style="display:block; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; transition:border-color 0.2s; text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                        <div style="background:var(--bg-card); padding:16px 20px; display:flex; align-items:flex-start; gap:14px;">
+                            <div style="flex-shrink:0; width:36px; height:36px; background:#000; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; letter-spacing:0.05em;">BP</div>
+                            <div>
+                                <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">The Blueprint</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:4px;">Beat Weekend: что смотреть на фестивале</div>
+                                <div style="font-size:12px; color:var(--muted);">theblueprint.ru →</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="case-cols">
+                    <div class="case-col">
+                        <div class="cc-title">Задачи</div>
+                        <ul>
+                            <li>Усилить продвижение фильмов уровня Tier 1</li>
+                            <li>Превратить фестиваль в статусное событие</li>
+                            <li>Повысить международное узнавание бренда</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Решения</div>
+                        <ul>
+                            <li>Квизы и вирусные форматы в Telegram-каналах</li>
+                            <li>Работа с лидерами мнений (KOL)</li>
+                            <li>Партнёрство с Moscow Tour Project</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Результаты</div>
+                        <ul>
+                            <li>80% перешедших из Telegram купили билеты</li>
+                            <li>8 спецпроектов с глянцевыми медиа</li>
+                            <li>Публикации в The Blueprint и BeinOpen</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nike -->
+            <div class="case-f fade-up">
+                <div class="case-f-top">
+                    <h3 class="case-f-name">Nike Women</h3>
+                    <span class="case-tag">Спорт · Мода</span>
+                </div>
+                <p class="case-f-desc">Адаптация глобальных кампаний Nike Women для российского рынка. Вовлечение женской аудитории 15–35 лет в активный образ жизни через медиа, глянец и продуктовые интеграции.</p>
+                <div class="case-stats">
+                    <div><div class="cs-num" data-count="200" data-suffix=" млн ₽">0</div><div class="cs-lbl">PR Value за год</div></div>
+                    <div><div class="cs-num" data-count="55">0</div><div class="cs-lbl">публикаций в месяц</div></div>
+                    <div><div class="cs-num" data-count="30" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">рост медиаприсутствия</div></div>
+                    <div><div class="cs-num" data-count="10" data-suffix="%">0</div><div class="cs-lbl">новых осведомлённых женщин 15–35</div></div>
+                </div>
+                <div class="case-imgs" style="justify-content:center;">
+                    <img src="https://thumb.tildacdn.com/tild3434-3036-4234-a164-623830643433/-/format/webp/_.jpg" alt="Nike Women кейс" style="height:280px; width:auto;">
+                </div>
+                <div class="case-cols">
+                    <div class="case-col">
+                        <div class="cc-title">Задачи</div>
+                        <ul>
+                            <li>Адаптировать глобальные кампании Nike Women для российского рынка</li>
+                            <li>Разжечь интерес к спорту среди женщин 15–30 лет</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Решения</div>
+                        <ul>
+                            <li>Промо Nike Here I Am с участием начинающих атлеток</li>
+                            <li>Продакт-плейсменты и фотосессии в глянцевых изданиях</li>
+                            <li>Партнёрские редакционные материалы</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Результаты</div>
+                        <ul>
+                            <li>Многие участницы купили абонементы в фитнес</li>
+                            <li>PR Value кампании Nike Here I Am — 6 млн ₽</li>
+                            <li>Суммарный PR Value за год — 200 млн ₽</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oh, My -->
+            <div class="case-f fade-up">
+                <div class="case-f-top">
+                    <h3 class="case-f-name">OH, MY</h3>
+                    <span class="case-tag">Мода</span>
+                </div>
+                <p class="case-f-desc">PR-поддержка российского бренда базовой одежды: повышение узнаваемости, формирование образа успешной компании и рост аудитории через коллаборации с дизайнерами и работу с журналистами как лидерами мнений.</p>
+                <div class="case-stats">
+                    <div><div class="cs-num" data-count="1.7" data-suffix=" млн ₽">0</div><div class="cs-lbl">PR Value кампании</div></div>
+                    <div><div class="cs-num" data-count="60">0</div><div class="cs-lbl">публикаций за 3 месяца</div></div>
+                    <div><div class="cs-num" data-count="90" data-suffix="%">0</div><div class="cs-lbl">позитивный тон</div></div>
+                    <div><div class="cs-num" data-count="20" data-prefix="+" data-suffix="%">0</div><div class="cs-lbl">рост новых пользователей</div></div>
+                </div>
+                <div class="case-imgs" style="display:grid; grid-template-columns:1fr 1fr 1fr; overflow:visible;">
+                    <img src="images/case-fl2.png" alt="OH MY кейс" style="height:240px; width:100%; object-fit:cover;">
+                    <img src="https://thumb.tildacdn.com/tild6264-6336-4637-a438-373531343837/-/format/webp/__2018-04-01__171757.png" alt="OH MY публикация 1" style="height:240px; width:100%; object-fit:cover; object-position:top;">
+                    <img src="https://thumb.tildacdn.com/tild3438-3537-4263-b464-363462613239/-/format/webp/__2018-04-01__171918.png" alt="OH MY публикация 2" style="height:240px; width:100%; object-fit:cover; object-position:top;">
+                </div>
+                <div class="case-cols">
+                    <div class="case-col">
+                        <div class="cc-title">Задачи</div>
+                        <ul>
+                            <li>Повысить узнаваемость бренда</li>
+                            <li>Создать образ успешной компании</li>
+                            <li>Увеличить аудиторию вдвое к концу года</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Решения</div>
+                        <ul>
+                            <li>Коллаборации с дизайнерами</li>
+                            <li>Журналисты как инфлюенсеры и лидеры мнений</li>
+                            <li>Трёхэтапная коммуникационная программа: тизер, интервью, анонс</li>
+                        </ul>
+                    </div>
+                    <div class="case-col">
+                        <div class="cc-title">Результаты</div>
+                        <ul>
+                            <li>50% новых пользователей совершили хотя бы одну покупку</li>
+                            <li>+50% рост транзакций через редакционные материалы</li>
+                            <li>PR Value за год — 24 млн ₽</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Compact -->
+        <div class="cases-comp">
+            <div class="case-c fade-up">
+                <div class="case-c-top">
+                    <div class="case-c-name">KFC</div>
+                    <div class="case-c-ind">Фастфуд</div>
+                </div>
+                <div class="case-c-kpi">80 публикаций · 70% позитивный тон</div>
+                <div class="case-c-val">+60% узнаваемость</div>
+            </div>
+
+            <div class="case-c fade-up">
+                <div class="case-c-top">
+                    <div class="case-c-name">Tamaris</div>
+                    <div class="case-c-ind">Обувь · Мода</div>
+                </div>
+                <div class="case-c-kpi">20 статей в месяц в топовом глянце · 90% позитивный тон</div>
+                <div class="case-c-val">PR Value 7 млн ₽/год</div>
+            </div>
+            <div class="case-c fade-up">
+                <div class="case-c-top">
+                    <div class="case-c-name">Roxy / Quiksilver</div>
+                    <div class="case-c-ind">Спорт · Streetwear</div>
+                </div>
+                <div class="case-c-kpi">15 публикаций в месяц · каждый второй номер о спортивной моде</div>
+                <div class="case-c-val">PR Value 1,5 млн ₽/мес</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FORM -->
+<div class="form-wrap" id="brief">
+    <div class="container">
+        <div class="form-sec">
+            <div class="form-layout">
+                <div class="form-left">
+                    <p class="label">Бриф</p>
+                    <h2 class="sec-title">Обсудим проект</h2>
+                    <p>Если вам интересно со мной поработать, пожалуйста, напишите мне через форму на сайте или по указанным контактам — напишите в мессенджер. Я свяжусь с вами в течение рабочего дня.</p>
+                </div>
+                <div>
+                    <form class="form" id="briefForm" novalidate>
+                        <div class="form-field">
+                            <label class="form-lbl">Компания</label>
+                            <input class="form-input" type="text" placeholder="Название вашей компании" required>
+                        </div>
+                        <div class="form-field">
+                            <label class="form-lbl">Задача</label>
+                            <select class="form-select" required>
+                                <option value="" disabled selected>Выберите задачу</option>
+                                <option>Имидж бренда</option>
+                                <option>Продвижение продукта</option>
+                                <option>Запуск кампании</option>
+                                <option>Антикризисный PR</option>
+                                <option>Другое</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label class="form-lbl">Email</label>
+                            <input class="form-input" type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label class="form-lbl">Телефон</label>
+                            <input class="form-input" type="tel" placeholder="+7 900 000-00-00">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-lbl">Сообщение</label>
+                            <textarea class="form-input" rows="5" maxlength="2000" placeholder="Расскажите о вашем проекте" style="resize:vertical; line-height:1.6;"></textarea>
+                            <div style="font-size:11px; color:var(--muted); text-align:right; margin-top:4px;"><span id="charCount">0</span> / 2000</div>
+                        </div>
+                        <button type="submit" class="btn btn-accent">
+                            Отправить заявку
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 8h10M9 4l4 4-4 4"/>
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="form-ok" id="formOk">
+                        <div class="form-ok-t">Бриф получен</div>
+                        <div class="form-ok-s">Свяжусь с вами в течение рабочего дня.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACTS -->
+<section class="section" id="contacts" style="border-bottom:none;">
+    <div class="container">
+        <div class="sec-head">
+            <p class="label">Контакты</p>
+            <h2 class="sec-title">Связаться</h2>
+        </div>
+        <div class="contacts-grid">
+            <div class="contact-item fade-up">
+                <div class="contact-type">Телефон / WhatsApp</div>
+                <div class="contact-val"><a href="tel:+79268453232">+7 926 845-32-32</a></div>
+            </div>
+            <div class="contact-item fade-up">
+                <div class="contact-type">Telegram</div>
+                <div class="contact-val"><a href="https://t.me/PolinaGalinskaya" target="_blank" rel="noopener noreferrer">@PolinaGalinskaya</a></div>
+            </div>
+            <div class="contact-item fade-up">
+                <div class="contact-type">Email</div>
+                <div class="contact-val"><a href="mailto:galinskayap@gmail.com">galinskayap@gmail.com</a></div>
+            </div>
+            <div class="contact-item fade-up">
+                <div class="contact-type">LinkedIn</div>
+                <div class="contact-val"><a href="https://www.linkedin.com/in/polinapr/" target="_blank" rel="noopener noreferrer">polinapr</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer-wrap">
+    <div class="container">
+        <div class="footer">
+            <a href="#" class="footer-logo">
+                <img src="images/logo.jpeg" alt="Галинская">
+            </a>
+            <div class="footer-copy">© 2026 Полина Галинская</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const textarea = document.querySelector('#briefForm textarea');
+    if (textarea) {
+        textarea.addEventListener('input', () => {
+            document.getElementById('charCount').textContent = textarea.value.length;
+        });
+    }
+
+    const burger = document.getElementById('burger');
+    const mobNav = document.getElementById('mobNav');
+
+    burger.addEventListener('click', () => {
+        const open = mobNav.classList.toggle('open');
+        burger.classList.toggle('active', open);
+        mobNav.setAttribute('aria-hidden', String(!open));
+    });
+
+    document.querySelectorAll('.mob-link').forEach(l => {
+        l.addEventListener('click', () => {
+            mobNav.classList.remove('open');
+            burger.classList.remove('active');
+            mobNav.setAttribute('aria-hidden', 'true');
+        });
+    });
+
+    document.getElementById('briefForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const inputs = form.querySelectorAll('input, select, textarea');
+        const company = inputs[0].value.trim();
+        const task    = inputs[1].value;
+        const email   = inputs[2].value.trim();
+        const phone   = inputs[3].value.trim();
+        const message = inputs[4].value.trim();
+
+        let valid = true;
+        [inputs[0], inputs[2]].forEach(el => {
+            if (!el.value.trim()) {
+                el.style.borderColor = '#c0392b';
+                el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+                valid = false;
+            }
+        });
+        if (!valid) { inputs[!inputs[0].value.trim() ? 0 : 2].focus(); return; }
+
+        const text = `📋 Новая заявка с сайта\n\n🏢 Компания: ${company}\n📌 Задача: ${task}\n📧 Email: ${email}${phone ? '\n📞 Телефон: ' + phone : ''}${message ? '\n\n💬 Сообщение:\n' + message : ''}`;
+
+        try {
+            await fetch('https://api.telegram.org/bot8940369251:AAEnnLvlDcDFsERHKOHHWbLEJWIy97BLSqg/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: 493934807, text: text })
+            });
+        } catch(err) { /* сеть недоступна — всё равно показываем подтверждение */ }
+
+        form.style.display = 'none';
+        document.getElementById('formOk').classList.add('show');
+    });
+</script>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Закрыть">✕</button>
+    <img id="lbImg" src="" alt="">
+</div>
+
+<script>
+    (function() {
+        const overlay = document.getElementById('lbOverlay');
+        const lbImg   = document.getElementById('lbImg');
+
+        function open(src, alt) {
+            lbImg.src = src;
+            lbImg.alt = alt || '';
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function close() {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+            lbImg.src = '';
+        }
+
+        document.querySelectorAll('.case-imgs img').forEach(img => {
+            img.addEventListener('click', () => open(img.src, img.alt));
+        });
+
+        overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+        document.getElementById('lbClose').addEventListener('click', close);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+</script>
+
+<script>
+    function animateCounter(el) {
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const prefix = el.dataset.prefix || '';
+        const isDecimal = String(el.dataset.count).includes('.');
+        const duration = 1400;
+        const start = performance.now();
+
+        function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const value = ease * target;
+            const formatted = isDecimal ? value.toFixed(1).replace('.', ',') : Math.floor(value);
+            el.textContent = prefix + formatted + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    const cardObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const siblings = Array.from(entry.target.parentElement.querySelectorAll('.fade-up:not(.visible)'));
+            const idx = siblings.indexOf(entry.target);
+            setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+            cardObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => cardObserver.observe(el));
+
+    const titleObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('line-visible');
+            titleObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll('.sec-title').forEach(el => titleObserver.observe(el));
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const counters = document.querySelectorAll('[data-count]');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        counters.forEach(el => observer.observe(el));
+    } else {
+        document.querySelectorAll('[data-count]').forEach(el => {
+            el.textContent = el.dataset.count + (el.dataset.suffix || '');
+        });
+    }
+</script>
+
+</body>
+</html>
