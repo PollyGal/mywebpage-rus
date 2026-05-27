@@ -1041,13 +1041,11 @@
         });
         if (!valid) { inputs[!inputs[0].value.trim() ? 0 : 2].focus(); return; }
 
-        const text = `📋 Новая заявка с сайта\n\n🏢 Компания: ${company}\n📌 Задача: ${task}\n📧 Email: ${email}${phone ? '\n📞 Телефон: ' + phone : ''}${message ? '\n\n💬 Сообщение:\n' + message : ''}`;
-
         try {
-            await fetch('https://api.telegram.org/bot8940369251:AAEnnLvlDcDFsERHKOHHWbLEJWIy97BLSqg/sendMessage', {
+            await fetch('/api/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: 493934807, text: text })
+                body: JSON.stringify({ company, task, email, phone, message })
             });
         } catch(err) { /* сеть недоступна — всё равно показываем подтверждение */ }
 
