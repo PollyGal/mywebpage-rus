@@ -347,10 +347,16 @@
             .hero { padding: 56px 0 72px; }
             .hero-stats { gap: 24px; flex-wrap: nowrap; }
             .clients-grid { grid-template-columns: repeat(2, 1fr); }
-            .case-f { padding: 32px; }
+            .case-f { padding: 32px; overflow: hidden; }
             .case-f-top { flex-direction: column; gap: 10px; }
+            .case-f-name { word-break: break-word; }
+            .case-f-desc { max-width: 100%; }
+            .case-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; padding: 12px; }
+            .cs-num { font-size: 20px; }
+            .cs-lbl { font-size: 10px; }
             .case-cols { grid-template-columns: 1fr; gap: 20px; }
             .cases-comp { grid-template-columns: 1fr 1fr; }
+            .case-c { overflow: hidden; word-break: break-word; }
             .form-layout { grid-template-columns: 1fr; gap: 40px; }
             .contacts-grid { grid-template-columns: 1fr 1fr; }
         }
