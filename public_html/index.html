@@ -371,8 +371,9 @@
             .stat-lbl { max-width: none; }
             .client-cell { padding: 24px 16px; }
             .case-f { padding: 20px; }
-            .case-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
-            .cs-num { font-size: 20px; }
+            .case-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; padding: 12px; }
+            .cs-num { font-size: 16px; }
+            .cs-lbl { font-size: 10px; }
             .case-imgs img { height: 110px; }
             .case-c { padding: 20px; }
             .cases-comp { grid-template-columns: 1fr; }
